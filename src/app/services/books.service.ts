@@ -26,7 +26,7 @@ export class BooksService {
   getSingleBook(id: number) {
     return new Promise(
       (resolve, reject) => {
-        firebase.database().ref('/books' + id).once('value').then(
+        firebase.database().ref('/books/' + id).once('value').then(
           (data) => {
             resolve(data.val())
           }, (error) => {
@@ -48,7 +48,7 @@ export class BooksService {
           return true
         }
       }
-    )
+    );
     this.books.splice(bookIndexToRemove,1)
     this.saveBooks();
     this.emitBooks();
