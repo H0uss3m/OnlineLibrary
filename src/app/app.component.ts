@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
     authDomain: "world-of-books-686dd.firebaseapp.com",
     databaseURL: "https://world-of-books-686dd.firebaseio.com",
     projectId: "world-of-books-686dd",
-    storageBucket: "",
+    storageBucket: "world-of-books-686dd.appspot.com",
     messagingSenderId: "486724279368",
     appId: "1:486724279368:web:588cc6fdb8ca29fbb64c7d",
     measurementId: "G-GVW9HB7N92"

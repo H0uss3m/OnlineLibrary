@@ -7,15 +7,18 @@
         *ngFor="let book of books; let i = index"
         (click)="onViewBook(i)"
       >
-    <h3 class="list-group-item-heading">
-        {{book.title}}
-        <button class="btn btn-default pull-right" (click)="onDeleteBook(book)">
+        <h3 class="list-group-item-heading">
+          {{ book.title }}
+          <button
+            class="btn btn-default pull-right"
+            (click)="onDeleteBook(book)"
+          >
             <span class="glyphicon glyphicon-minus"></span>
-        </button>
-    </h3>
-    <p class="list-group-item-text">{{book.author}}</p>
-    </button>
+          </button>
+        </h3>
+        <p class="list-group-item-text">{{ book.author }}</p>
+      </button>
     </div>
-    <button class="btn btn-primary"(click)="onNewBook()">Nouveau Livre</button>
+    <button class="btn btn-primary" (click)="onNewBook()">Nouveau Livre</button>
   </div>
 </div>

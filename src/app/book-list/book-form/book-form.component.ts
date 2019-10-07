@@ -11,24 +11,44 @@ import { Router } from '@angular/router';
 })
 export class BookFormComponent implements OnInit {
   bookForm: FormGroup;
-  constructor(private formBuilder:FormBuilder,
-              private booksService:BooksService,
-              private router:Router) { }
+  fileUrl:string;
+  fileIsUploading = false;
+  fileUploaded = false;
+  constructor(private formBuilder: FormBuilder,
+    private booksService: BooksService,
+    private router: Router) { }
 
   ngOnInit() {
     this.initForm();
   }
-  initForm(){
+  initForm() {
     this.bookForm = this.formBuilder.group({
-      title:['',Validators.required],
-      author:['',Validators.required]
+      title: ['', Validators.required],
+      author: ['', Validators.required]
     });
   }
-  onSaveBook(){
+  onSaveBook() {
     const title = this.bookForm.get('title').value;
     const author = this.bookForm.get('author').value;
-    const newBook = new Book(title,author);
+    const newBook = new Book(title, author);
+    console.log("file",this.fileUrl)
+    if(this.fileUrl && this.fileUrl !== ''){
+      newBook.photo = this.fileUrl;
+    }
     this.booksService.createNewBook(newBook);
     this.router.navigate(['/books']);
+  }
+  onUploadFile(file:File){
+    this.fileIsUploading = true;
+    this.booksService.uploadFile(file).then(
+      (url:string)=>{
+        this.fileUrl = url;
+        this.fileIsUploading = false;
+        this.fileUploaded = true
+      }
+    )
+  }
+  detectFiles(event){
+    this.onUploadFile(event.target.files[0]);
   }
 }

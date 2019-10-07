@@ -1,17 +1,45 @@
 <div class="row">
-
-    <div style="padding:2%;background-color: white;width:50%;margin-top:25%;margin-left:-6%;"class="col-sm-8 col-sm-offset-2">
-        <h2>Enregistrer un nouveau livre</h2>
-        <form [formGroup]="bookForm" (ngSubmit)="onSaveBook()">
-            <div class="form-group">
-                <label for="title">Titre</label>
-                <input type="text" class="form-control" id="title" formControlName="title">
-            </div>
-            <div class="form-group">
-                <label for="author">Auteur</label>
-                <input type="text" class="form-control" id="author" formControlName="author">
-            </div>
-            <button class="btn btn-success" type="submit" [disabled]="bookForm.invalid">Enregistrer</button>
-        </form>
-    </div>
+  <div
+    style="padding:2%;background-color: white;width:50%;margin-top:25%;margin-left:-6%;"
+    class="col-sm-8 col-sm-offset-2"
+  >
+    <h2>Enregistrer un nouveau livre</h2>
+    <form [formGroup]="bookForm" (ngSubmit)="onSaveBook()">
+      <div class="form-group">
+        <label for="title">Titre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          formControlName="title"
+        />
+      </div>
+      <div class="form-group">
+        <label for="author">Auteur</label>
+        <input
+          type="text"
+          class="form-control"
+          id="author"
+          formControlName="author"
+        />
+      </div>
+      <div class="form-group">
+        <h4>Ajouter une photo</h4>
+        <input
+          type="file"
+          (change)="detectFiles($event)"
+          class="form-control"
+          accept="image/*"
+        />
+        <p class="text-success" *ngIf="fileUploaded">Fichier chargé !</p>
+      </div>
+      <button
+        class="btn btn-success"
+        type="submit"
+        [disabled]="bookForm.invalid || fileIsUploading"
+      >
+        Enregistrer
+      </button>
+    </form>
+  </div>
 </div>
